@@ -22,19 +22,24 @@
 // }
 
 function lengthOfLongestSubstring(s: string): number {
-    const scanner: Array<string> = [];
-    let longest: number = 0;
-
-    for (const char of s) {
-        const index = scanner.indexOf(char);
-
-        if (index !== -1) scanner.splice(0, index + 1)
-
-        scanner.push(char)
-        longest = Math.max(longest, scanner.length)
-    }
-
-    return longest
-}
+    let set: Set<string> = new Set();
+     let left: number = 0;
+     let maxSize: number = 0;
+ 
+     if (s.length === 0) return 0;
+     if (s.length === 1) return 1;
+ 
+     for (let i = 0; i < s.length; i++) {
+ 
+         while (set.has(s[i])) {
+             set.delete(s[left])
+             left++;
+         }
+         set.add(s[i]);
+         maxSize = Math.max(maxSize, i - left + 1)
+     }
+     
+     return maxSize;
+ }
 
 console.log(lengthOfLongestSubstring("pwwkew"));
