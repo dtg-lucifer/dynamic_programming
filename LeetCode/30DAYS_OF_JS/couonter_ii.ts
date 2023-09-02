@@ -6,7 +6,6 @@ type ReturnObj = {
 
 function createCounter(init: number): ReturnObj {
     let count = init;
-    const root = init;
 
     return {
         increment: () => {
@@ -16,7 +15,7 @@ function createCounter(init: number): ReturnObj {
             return --count;
         },
         reset: () => {
-            count = root;
+            count = init;
             return count
         },
     }
